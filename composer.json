@@ -1,0 +1,43 @@
+{
+    "name": "van-ons/filament-settings",
+    "description": "A package that provides an easy to use settings page for filament",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "VanOns\\FilamentSettings\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Van Ons",
+            "email": "opensource@van-ons.nl"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "filament/filament": "^3.2",
+        "illuminate/contracts": "^9.28|^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "dev-master",
+        "orchestra/testbench": "10.x-dev",
+        "phpstan/phpstan": "2.0.x-dev"
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "fix": "vendor/bin/php-cs-fixer fix"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VanOns\\FilamentSettings\\FilamentSettingsServiceProvider"
+            ]
+        },
+        "aliases": {
+            "FilamentSettings": "FilamentSettings"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
