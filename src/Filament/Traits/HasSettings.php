@@ -3,6 +3,7 @@
 namespace VanOns\FilamentSettings\Filament\Traits;
 
 use Filament\Notifications\Notification;
+use Illuminate\Validation\ValidationException;
 use VanOns\FilamentSettings\Classes\Settings;
 use VanOns\FilamentSettings\Filament\Pages\SettingsPage;
 
@@ -31,10 +32,16 @@ trait HasSettings
             } else {
                 throw new \Exception('Settings not found');
             }
+        } catch (ValidationException $e) {
+            $this->onValidationError($e);
+
+            $this->dispatch('form-validation-error', livewireId: $this->getId());
+
+            throw $e;
         } catch (\Exception) {
             Notification::make()
                 ->danger()
-                ->title(__('moolang-filament::panel.error_message'))
+                ->title(__('filament-settings-lang::panel.error_message'))
                 ->send();
             return;
         }

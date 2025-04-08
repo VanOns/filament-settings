@@ -25,7 +25,7 @@ class Settings extends Model
         $record = self::query()->where('name', $key)->first();
 
         return json_decode(
-            $record->value,
+            $record?->value,
             true
         );
     }
