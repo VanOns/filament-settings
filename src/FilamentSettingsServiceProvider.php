@@ -3,6 +3,7 @@
 namespace VanOns\FilamentSettings;
 
 use Illuminate\Support\ServiceProvider;
+use VanOns\FilamentSettings\Console\Commands\MakeSettingsPageCommand;
 
 class FilamentSettingsServiceProvider extends ServiceProvider
 {
@@ -55,6 +56,12 @@ class FilamentSettingsServiceProvider extends ServiceProvider
             ],
             groups: 'filament-settings-views'
         );
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                MakeSettingsPageCommand::class,
+            ]);
+        }
     }
 
     public function register(): void

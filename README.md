@@ -21,23 +21,24 @@ Then, require the package:
 composer require van-ons/filament-settings
 ```
 
-### Customizing the config
-
-To publish the config
-file, run the following command:
+## Usage
+You can create a new setting page by running the following command:
 
 ```bash
-php artisan vendor:publish --tag=filament-settings-config
+php artisan make:filament-settings-page GeneralSettings
 ```
 
-### Customizing the language files
+Executing this command will create two files:
+- `app/Filament/Pages/GeneralSettingsPage.php`: The settings page class.
+- `app/Settings/GeneralSettings.php`: The settings class.
+
+To modify the form, go to `GeneralSettingsPage`.
+To modify the default values, go to `GeneralSettings`.
+
+## Customizing the language files
 
 If you want to customize the language files, you can publish them by running the following command:
 
 ```bash
 php artisan vendor:publish --tag=filament-settings-lang
 ```
-
-## Usage
-
-...

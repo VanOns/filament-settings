@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Settings;
+
+use VanOns\FilamentSettings\Classes\Settings;
+
+class {{ name }} extends Settings
+{
+    public string $settingsName = '{{ plainName }}';
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function defaults(): array
+    {
+        return [
+            //
+        ];
+    }
+}

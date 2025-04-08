@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Filament\Pages;
+
+use App\Settings\{{ name }};
+use Filament\Forms\Components\Section;
+use VanOns\FilamentSettings\Filament\Pages\SettingsPage;
+
+class {{ pageName }} extends SettingsPage
+{
+    protected static ?string $title = '{{ displayName }}';
+    protected string $settingsClass = {{ name }}::class;
+
+    public function getFormSchema(): array
+    {
+        return [
+            Section::make('Settings')
+                ->schema([
+                    //
+                ]),
+        ];
+    }
+}

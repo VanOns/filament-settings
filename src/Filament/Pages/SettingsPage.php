@@ -2,7 +2,6 @@
 
 namespace VanOns\FilamentSettings\Filament\Pages;
 
-use Filament\Forms\Components\Group;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
@@ -28,16 +27,12 @@ abstract class SettingsPage extends Page implements HasForms
     public function form(Form $form): Form
     {
         return $form
+            ->statePath('settings')
             ->columns(3)
-            ->schema([
-                Group::make($this->getFormSchema())
-                    ->columns()
-                    ->columnSpanFull()
-                    ->statePath('settings')
-            ]);
+            ->schema($this->getFormSchema());
     }
 
-    protected function getFormSchema(): array
+    public function getFormSchema(): array
     {
         return [
             //
