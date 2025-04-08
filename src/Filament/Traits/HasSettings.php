@@ -3,51 +3,33 @@
 namespace VanOns\FilamentSettings\Filament\Traits;
 
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
-use ReflectionClass;
-use VanOns\FilamentSettings\Models\Settings;
+use VanOns\FilamentSettings\Classes\Settings;
+use VanOns\FilamentSettings\Filament\Pages\SettingsPage;
 
 /**
- * @mixin Page
+ * @mixin SettingsPage
  */
 trait HasSettings
 {
-    public ?string $example_test;
+    protected string $settingsClass;
+    protected Settings $settingsInstance;
+    public array $settings = [];
 
     public function mount(): void
     {
-        foreach (self::getTraitProperties() as $property) {
-            $this->{$property} = self::getSetting($property);
-        }
-    }
-
-    public static function getSetting(string $key): mixed
-    {
-        return Settings::getValue($key);
-    }
-
-    public static function getTraitProperties(): array
-    {
-        $properties = (new ReflectionClass(
-            new class () {
-                use HasSettings;
-            }
-        ))->getProperties();
-
-        $traitProperties = [];
-        foreach ($properties as $property) {
-            $traitProperties[] = $property->getName();
-        }
-
-        return $traitProperties;
+        $this->settingsInstance = new $this->settingsClass();
+        $this->settings = $this->settingsInstance->get();
     }
 
     public function submit(): void
     {
+        $this->settingsInstance = new $this->settingsClass();
         try {
             $validated = $this->validate();
-            foreach ($validated as $key => $value) {
-                Settings::set($key, $value);
+            if (array_key_exists('settings', $validated)) {
+                $this->settingsInstance->set($validated['settings']);
+            } else {
+                throw new \Exception('Settings not found');
             }
         } catch (\Exception) {
             Notification::make()

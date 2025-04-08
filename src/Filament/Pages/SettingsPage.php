@@ -2,7 +2,7 @@
 
 namespace VanOns\FilamentSettings\Filament\Pages;
 
-use Filament\Forms;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
@@ -10,17 +10,13 @@ use Filament\Pages\Page;
 use VanOns\FilamentSettings\Filament\Actions\SaveAction;
 use VanOns\FilamentSettings\Filament\Traits\HasSettings;
 
-class SettingsPage extends Page implements HasForms
+abstract class SettingsPage extends Page implements HasForms
 {
     use InteractsWithForms;
     use HasSettings;
 
     protected static string $view = 'filament-settings::filament.pages.settings';
-
-    public static function getType(): string
-    {
-        return 'settings';
-    }
+    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected function getActions(): array
     {
@@ -33,14 +29,18 @@ class SettingsPage extends Page implements HasForms
     {
         return $form
             ->columns(3)
-            ->schema($this->getFormSchema());
+            ->schema([
+                Group::make($this->getFormSchema())
+                    ->columns()
+                    ->columnSpanFull()
+                    ->statePath('settings')
+            ]);
     }
 
     protected function getFormSchema(): array
     {
         return [
-            Forms\Components\TextInput::make('example_test')
-                ->integer()
+            //
         ];
     }
 }
