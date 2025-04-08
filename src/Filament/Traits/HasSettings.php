@@ -26,11 +26,13 @@ trait HasSettings
     {
         $this->settingsInstance = new $this->settingsClass();
         try {
-            $validated = $this->validate();
-            if (array_key_exists('settings', $validated)) {
-                $this->settingsInstance->set($validated['settings']);
-            } else {
-                throw new \Exception('Settings not found');
+            if (!empty($this->settings)) {
+                $validated = $this->validate();
+                if (array_key_exists('settings', $validated)) {
+                    $this->settingsInstance->set($validated['settings']);
+                } else {
+                    throw new \Exception('Settings not found');
+                }
             }
         } catch (ValidationException $e) {
             $this->onValidationError($e);
@@ -38,7 +40,7 @@ trait HasSettings
             $this->dispatch('form-validation-error', livewireId: $this->getId());
 
             throw $e;
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             Notification::make()
                 ->danger()
                 ->title(__('filament-settings-lang::panel.error_message'))
