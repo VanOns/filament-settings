@@ -16,6 +16,7 @@ class SaveAction extends Action
         parent::setUp();
 
         $this->label(__('filament-actions::edit.single.modal.actions.save.label'))
-            ->action('submit');
+            ->action('submit')
+            ->keyBindings(['mod+s']);
     }
 }
