@@ -2,6 +2,7 @@
 
 namespace VanOns\FilamentSettings\Classes;
 
+use Illuminate\Support\Str;
 use VanOns\FilamentSettings\Models\Settings as SettingsModel;
 
 abstract class Settings
@@ -35,6 +36,11 @@ abstract class Settings
         return $this->settings[$key] ?? null;
     }
 
+    public function getParsedSettings(): array
+    {
+        return $this->parseArray($this->settings);
+    }
+
     public function set(mixed $value): void
     {
         SettingsModel::set($this->settingsName, $value);
@@ -42,5 +48,21 @@ abstract class Settings
             $value,
             $this->settings
         );
+    }
+
+    protected function parseArray(array $array): array
+    {
+        $newArray = [];
+
+        foreach ($array as $key => $value) {
+            $newKey = is_int($key) ? Str::uuid()->toString() : $key;
+
+            if (is_array($value)) {
+                $value = $this->parseArray($value);
+            }
+            $newArray[$newKey] = $value;
+        }
+
+        return $newArray;
     }
 }

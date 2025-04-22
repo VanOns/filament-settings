@@ -19,7 +19,7 @@ trait HasSettings
     public function mount(): void
     {
         $this->settingsInstance = new $this->settingsClass();
-        $this->settings = $this->settingsInstance->get();
+        $this->settings = $this->settingsInstance->getParsedSettings();
     }
 
     public function submit(): void
@@ -27,12 +27,9 @@ trait HasSettings
         $this->settingsInstance = new $this->settingsClass();
         try {
             if (!empty($this->settings)) {
-                $validated = $this->validate();
-                if (array_key_exists('settings', $validated)) {
-                    $this->settingsInstance->set($validated['settings']);
-                } else {
-                    throw new \Exception('Settings not found');
-                }
+                $validated = $this->form->getState();
+
+                $this->settingsInstance->set($validated);
             }
         } catch (ValidationException $e) {
             $this->onValidationError($e);
