@@ -2,6 +2,14 @@
 
 All changes to this project will be documented in this file.
 
+## 1.0.1 - 2025-04-23
+
+### What's changed
+
+* fix: some settings cannot be saved b68279786a269df59661c3cea10e082ddb2ab8d0
+* feat: enhance default values 884401f1923134e12135b9371c5f28a544ba355e
+* feat: add `Arr::get(...)` for retrieving settings data aed969625c42abf71b7ee7573096b3c08a1d920b
+
 ## 1.0.0 - 2025-04-22
 
 ### What's changed
