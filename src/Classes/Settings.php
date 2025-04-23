@@ -43,7 +43,8 @@ abstract class Settings
         if (is_null($key)) {
             return $this->settings;
         }
-        return $this->settings[$key] ?? null;
+
+        return Arr::get($this->settings, $key);
     }
 
     public function save(mixed $value): void
