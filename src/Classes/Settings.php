@@ -47,6 +47,13 @@ abstract class Settings
         return Arr::get($this->settings, $key);
     }
 
+    public function set(string $key, mixed $value): void
+    {
+        $this->save(
+            Arr::set($this->settings, $key, $value)
+        );
+    }
+
     public function save(mixed $value): void
     {
         SettingsModel::set($this->settingsName, $value);
