@@ -2,7 +2,7 @@
 
 namespace VanOns\FilamentSettings\Classes;
 
-use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use VanOns\FilamentSettings\Models\Settings as SettingsModel;
 
 abstract class Settings
@@ -14,7 +14,9 @@ abstract class Settings
     {
         $this->settings = array_merge(
             $this->defaults(),
-            $this->getSettings()
+            $this->filterSettings(
+                $this->getSettings()
+            )
         );
     }
 
@@ -26,6 +28,14 @@ abstract class Settings
     protected function getSettings(): array
     {
         return SettingsModel::getValue($this->settingsName) ?? [];
+    }
+
+    protected function filterSettings(array $settings): array
+    {
+        return array_filter(
+            $settings,
+            fn ($value) => !((is_string($value) || is_array($value)) && empty($value)),
+        );
     }
 
     public function get(?string $key = null): mixed
