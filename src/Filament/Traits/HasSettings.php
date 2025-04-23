@@ -12,6 +12,8 @@ use VanOns\FilamentSettings\Filament\Pages\SettingsPage;
  */
 trait HasSettings
 {
+    use CanMutateData;
+
     protected string $settingsClass;
     protected Settings $settingsInstance;
     public array $settings = [];
@@ -19,25 +21,39 @@ trait HasSettings
     public function mount(): void
     {
         $this->settingsInstance = new $this->settingsClass();
-        $this->settings = $this->settingsInstance->getParsedSettings();
+        $this->fillForm();
+    }
+
+    public function fillForm(): void
+    {
+        $data = $this->mutateFormDataBeforeFill(
+            $this->settingsInstance->get()
+        );
+
+        $this->form->fill($data);
+    }
+
+    public function saveForm(): void
+    {
+        $data = $this->mutateFormDataBeforeSave(
+            $this->form->getState()
+        );
+
+        $this->settingsInstance->save($data);
     }
 
     public function submit(): void
     {
         $this->settingsInstance = new $this->settingsClass();
         try {
-            if (!empty($this->settings)) {
-                $validated = $this->form->getState();
-
-                $this->settingsInstance->set($validated);
-            }
+            $this->saveForm();
         } catch (ValidationException $e) {
             $this->onValidationError($e);
 
             $this->dispatch('form-validation-error', livewireId: $this->getId());
 
             throw $e;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             Notification::make()
                 ->danger()
                 ->title(__('filament-settings-lang::panel.error_message'))
