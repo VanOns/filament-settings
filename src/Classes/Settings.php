@@ -25,9 +25,14 @@ abstract class Settings
         return [];
     }
 
+    public function getSettingsName(): string
+    {
+        return $this->settingsName;
+    }
+
     protected function getSettings(): array
     {
-        return SettingsModel::getValue($this->settingsName) ?? [];
+        return SettingsModel::getValue($this->getSettingsName()) ?? [];
     }
 
     protected function filterSettings(array $settings): array
@@ -56,6 +61,6 @@ abstract class Settings
 
     public function save(mixed $value): void
     {
-        SettingsModel::set($this->settingsName, $value);
+        SettingsModel::set($this->getSettingsName(), $value);
     }
 }
