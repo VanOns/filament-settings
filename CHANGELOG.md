@@ -2,6 +2,12 @@
 
 All changes to this project will be documented in this file.
 
+## v1.0.3 - 2025-04-28
+
+### What's changed
+
+* feat: add `getSettingsName` method to `Settings` class 6b954e24ccfa14632d2fed0101a71641ed7717b6
+
 ## 1.0.2 - 2025-04-23
 
 ### What's changed
