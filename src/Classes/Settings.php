@@ -10,8 +10,12 @@ abstract class Settings
     public array $settings = [];
     public string $settingsName = 'general';
 
-    public function __construct()
-    {
+    public function __construct(
+        ?string $settingsName = null
+    ) {
+        if (!is_null($settingsName)) {
+            $this->settingsName = $settingsName;
+        }
         $this->settings = array_merge(
             $this->defaults(),
             $this->filterSettings(

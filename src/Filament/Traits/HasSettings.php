@@ -20,7 +20,7 @@ trait HasSettings
 
     public function mount(): void
     {
-        $this->settingsInstance = new $this->settingsClass();
+        $this->settingsInstance = $this->getSettingsInstance();
         $this->fillForm();
     }
 
@@ -42,9 +42,14 @@ trait HasSettings
         $this->settingsInstance->save($data);
     }
 
+    public function getSettingsInstance(): Settings
+    {
+        return new $this->settingsClass();
+    }
+
     public function submit(): void
     {
-        $this->settingsInstance = new $this->settingsClass();
+        $this->settingsInstance = $this->getSettingsInstance();
         try {
             $this->saveForm();
         } catch (ValidationException $e) {
