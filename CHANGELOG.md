@@ -2,6 +2,12 @@
 
 All changes to this project will be documented in this file.
 
+## v1.0.4 - 2025-04-28
+
+### What's changed
+
+* feat: allow settingsInstance to be set dynamically fb464ed9c5456a6a4bfcf4237c4b453597d2cea0
+
 ## v1.0.3 - 2025-04-28
 
 ### What's changed
