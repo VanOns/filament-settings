@@ -16,11 +16,13 @@ abstract class Settings
         if (!is_null($settingsName)) {
             $this->settingsName = $settingsName;
         }
-        $this->settings = array_merge(
-            $this->defaults(),
-            $this->filterSettings(
-                $this->getSettings()
-            )
+        $defaults = Arr::dot($this->defaults());
+        $filteredSettings = $this->filterSettings(
+            Arr::dot($this->getSettings())
+        );
+
+        $this->settings = Arr::undot(
+            array_merge($defaults, $filteredSettings)
         );
     }
 
@@ -43,8 +45,17 @@ abstract class Settings
     {
         return array_filter(
             $settings,
-            fn ($value) => !((is_string($value) || is_array($value)) && empty($value)),
+            [$this, 'isValidSetting']
         );
+    }
+
+    protected function isValidSetting(mixed $value): bool
+    {
+        if (is_string($value) || is_array($value)) {
+            return !empty($value);
+        }
+
+        return !is_null($value);
     }
 
     public function get(?string $key = null): mixed
