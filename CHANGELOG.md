@@ -2,6 +2,12 @@
 
 All changes to this project will be documented in this file.
 
+## v1.0.5 - 2025-04-29
+
+### What's changed
+
+* feat: allow nested defaults array 1b8f88373c9b60c49653dd789af5d50b8e234648
+
 ## v1.0.4 - 2025-04-28
 
 ### What's changed
