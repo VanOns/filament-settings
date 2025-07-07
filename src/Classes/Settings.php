@@ -16,14 +16,10 @@ abstract class Settings
         if (!is_null($settingsName)) {
             $this->settingsName = $settingsName;
         }
-        $defaults = Arr::dot($this->defaults());
-        $filteredSettings = $this->filterSettings(
-            Arr::dot($this->getSettings())
-        );
 
-        $this->settings = Arr::undot(
-            array_merge($defaults, $filteredSettings)
-        );
+        if (empty($this->getSettings())) {
+            $this->settings = $this->defaults();
+        }
     }
 
     public function defaults(): array
