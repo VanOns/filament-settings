@@ -2,6 +2,12 @@
 
 All changes to this project will be documented in this file.
 
+## v1.0.6 - 2025-07-07
+
+### What's changed
+
+- feat: safe merge settings with defaults #5 (by @KianAcquoy)
+
 ## v1.0.5 - 2025-04-29
 
 ### What's changed
