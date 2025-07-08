@@ -17,9 +17,9 @@ abstract class Settings
             $this->settingsName = $settingsName;
         }
 
-        if (empty($this->getSettings())) {
-            $this->settings = $this->defaults();
-        }
+        $this->settings = empty($this->getSettings())
+            ? $this->defaults()
+            : $this->getSettings();
     }
 
     public function defaults(): array
