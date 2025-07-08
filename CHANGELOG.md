@@ -2,6 +2,12 @@
 
 All changes to this project will be documented in this file.
 
+## v1.0.7 - 2025-07-08
+
+### What's changed
+
+- fix: settings not loading #6 (by @KianAcquoy)
+
 ## v1.0.6 - 2025-07-07
 
 ### What's changed
