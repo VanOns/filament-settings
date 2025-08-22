@@ -2,6 +2,7 @@
 
 namespace VanOns\FilamentSettings\Filament\Traits;
 
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Validation\ValidationException;
 use VanOns\FilamentSettings\Classes\Settings;
@@ -58,7 +59,7 @@ trait HasSettings
             $this->dispatch('form-validation-error', livewireId: $this->getId());
 
             throw $e;
-        } catch (\Exception) {
+        } catch (Exception) {
             Notification::make()
                 ->danger()
                 ->title(__('filament-settings-lang::panel.error_message'))
