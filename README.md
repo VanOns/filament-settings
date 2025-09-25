@@ -11,8 +11,8 @@ Please see the table below to determine which version you need.
 
 | Version                                                     | Filament |
 |-------------------------------------------------------------|----------|
-| [v2](https://github.com/VanOns/filament-settings/tree/main) | <4.0     |
-| v1 (current)                                                | \>=4.0   |
+| [v2](https://github.com/VanOns/filament-settings/tree/main) | \>=4.0   |
+| v1 (current)                                                | <4.0     |
 
 **Please note:** the `main` branch will always be the latest major version.
 
