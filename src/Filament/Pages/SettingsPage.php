@@ -4,8 +4,8 @@ namespace VanOns\FilamentSettings\Filament\Pages;
 
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Pages\Page;
+use Filament\Schemas\Schema;
 use VanOns\FilamentSettings\Filament\Actions\SaveAction;
 use VanOns\FilamentSettings\Filament\Traits\HasSettings;
 
@@ -14,8 +14,8 @@ abstract class SettingsPage extends Page implements HasForms
     use InteractsWithForms;
     use HasSettings;
 
-    protected static string $view = 'filament-settings::filament.pages.settings';
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected string $view = 'filament-settings::filament.pages.settings';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected function getActions(): array
     {
@@ -24,12 +24,12 @@ abstract class SettingsPage extends Page implements HasForms
         ];
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->statePath('settings')
             ->columns(3)
-            ->schema($this->getFormSchema());
+            ->components($this->getFormSchema());
     }
 
     public function getFormSchema(): array

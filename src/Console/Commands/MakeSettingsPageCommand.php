@@ -2,6 +2,7 @@
 
 namespace VanOns\FilamentSettings\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Str;
@@ -74,7 +75,7 @@ class MakeSettingsPageCommand extends Command implements PromptsForMissingInput
 
         try {
             $this->copyStubToApp($stub, $targetPath, $replacements);
-        } catch (\Exception) {
+        } catch (Exception) {
             $this->fail('Something went wrong');
         }
     }
