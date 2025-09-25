@@ -5,6 +5,7 @@ namespace VanOns\FilamentSettings\Traits;
 use Filament\Support\Commands\Concerns\CanManipulateFiles as FilamentCanManipulateFiles;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -22,7 +23,7 @@ trait CanManipulateFiles
         $filesystem = app(Filesystem::class);
 
         if (!$this->fileExists($realStubPath = base_path($stubPath))) {
-            $last = \Str::afterLast($stubPath, '/');
+            $last = Str::afterLast($stubPath, '/');
             $realStubPath = $this->getDefaultStubPath() . "/{$last}";
         }
 
