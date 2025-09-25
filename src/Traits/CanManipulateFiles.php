@@ -6,6 +6,7 @@ use Str;
 use Filament\Support\Commands\Concerns\CanManipulateFiles as FilamentCanManipulateFiles;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
