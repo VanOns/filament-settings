@@ -18,7 +18,7 @@ updates:
       - dependencies
 
   - package-ecosystem: github-actions
-    target-branch: 'releases/v1'
+    target-branch: 'release/v1'
     directory: /
     schedule:
       interval: weekly
@@ -26,7 +26,7 @@ updates:
       - dependencies
 
   - package-ecosystem: composer
-    target-branch: 'releases/v1'
+    target-branch: 'release/v1'
     directory: /
     schedule:
       interval: weekly
