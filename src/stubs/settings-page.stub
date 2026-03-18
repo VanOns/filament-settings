@@ -3,7 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Settings\{{ name }};
-use Filament\Forms\Components\Section;
+use Filament\Schemas\Components\Section;
 use VanOns\FilamentSettings\Filament\Pages\SettingsPage;
 
 class {{ pageName }} extends SettingsPage
@@ -15,6 +15,7 @@ class {{ pageName }} extends SettingsPage
     {
         return [
             Section::make('Settings')
+                ->columnSpanFull()
                 ->schema([
                     //
                 ]),
