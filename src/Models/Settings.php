@@ -11,17 +11,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Settings extends Model
 {
-    protected $guarded = [
-        'id',
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'value' => 'json',
     ];
 
     public static function set(string $key, mixed $value): void
     {
         self::query()->updateOrCreate(
             ['name' => $key],
-            [
-                'value' => is_null($value) ? null : json_encode($value),
-            ]
+            ['value' => $value]
         );
     }
 
@@ -29,9 +29,6 @@ class Settings extends Model
     {
         $record = self::query()->where('name', $key)->first();
 
-        return json_decode(
-            $record?->value,
-            true
-        );
+        return $record?->value;
     }
 }
