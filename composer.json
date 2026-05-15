@@ -37,7 +37,7 @@
             ]
         },
         "aliases": {
-            "FilamentSettings": "FilamentSettings"
+            "FilamentSettings": "VanOns\\FilamentSettings\\Facade\\FilamentSettings"
         }
     },
     "minimum-stability": "dev",
