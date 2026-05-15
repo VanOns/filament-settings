@@ -1,6 +1,13 @@
+<p align="center"><img src="art/social-card.png" alt="Social card of Filament Navigation"></p>
+
 # Filament Settings
 
-This package provides an easy-to-use settings page for Filament.
+[![Latest version on GitHub](https://img.shields.io/github/release/VanOns/filament-settings.svg?style=flat-square)](https://github.com/VanOns/filament-settings/releases)
+[![Total downloads](https://img.shields.io/packagist/dt/van-ons/filament-settings.svg?style=flat-square)](https://packagist.org/packages/van-ons/filament-settings)
+[![GitHub issues](https://img.shields.io/github/issues/VanOns/filament-settings?style=flat-square)](https://github.com/VanOns/filament-settings/issues)
+[![License](https://img.shields.io/github/license/VanOns/filament-settings?style=flat-square)](https://github.com/VanOns/filament-settings/blob/main/LICENSE.md)
+
+This plugin adds an easy-to-use settings page to your Filament admin panel.
 
 ## Quick start
 
@@ -9,33 +16,23 @@ This package provides an easy-to-use settings page for Filament.
 For certain Filament versions, changes have to be made that render the package backwards incompatible with the previous version.
 Please see the table below to determine which version you need.
 
-| Version                                                           | Filament          |
-|-------------------------------------------------------------------|-------------------|
-| v2 (current)                                                      | \>=4.0 \|  \>=5.0 |
-| [v1](https://github.com/VanOns/filament-settings/tree/release/v1) | <4.0              |
+| Version                                                           | Filament         |
+|-------------------------------------------------------------------|------------------|
+| v2 (current)                                                      | \>=4.0 \| \>=5.0 |
+| [v1](https://github.com/VanOns/filament-settings/tree/release/v1) | <4.0             |
 
 **Please note:** the `main` branch will always be the latest major version.
 
 ### Installation
 
-Because this package is not published to Packagist, you need to add it as a repository in your `composer.json` file:
-
-```json
-"repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/VanOns/filament-settings"
-    }
-]
-```
-
-Then, require the package:
+Start by installing the package via Composer:
 
 ```bash
 composer require van-ons/filament-settings:^2.0
 ```
 
-## Usage
+### Usage
+
 You can create a new setting page by running the following command:
 
 ```bash
