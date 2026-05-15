@@ -5,8 +5,8 @@ namespace VanOns\FilamentSettings\Facade;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static mixed get(string $key)
- * @method static void set(string $key, mixed $value)
+ * @method static mixed getValue(string $key, mixed $default = null)
+ * @method static void setValue(string $key, mixed $value)
  */
 class FilamentSettings extends Facade
 {

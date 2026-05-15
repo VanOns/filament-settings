@@ -6,15 +6,15 @@ use VanOns\FilamentSettings\Models\Settings;
 
 class FilamentSettings
 {
-    public function get(string $key): mixed
+    public function getValue(string $key, mixed $default = null): mixed
     {
         return Settings::query()
             ->where('name', $key)
             ->first()
-            ?->value;
+            ?->value ?? $default;
     }
 
-    public function set(string $key, mixed $value): void
+    public function setValue(string $key, mixed $value): void
     {
         Settings::query()->updateOrCreate(
             ['name' => $key],

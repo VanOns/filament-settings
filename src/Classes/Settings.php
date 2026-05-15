@@ -34,7 +34,7 @@ abstract class Settings
 
     protected function getSettings(): array
     {
-        return FilamentSettings::get($this->getSettingsName()) ?? [];
+        return FilamentSettings::getValue($this->getSettingsName()) ?? [];
     }
 
     protected function filterSettings(array $settings): array
@@ -72,6 +72,6 @@ abstract class Settings
 
     public function save(mixed $value): void
     {
-        FilamentSettings::set($this->getSettingsName(), $value);
+        FilamentSettings::setValue($this->getSettingsName(), $value);
     }
 }
