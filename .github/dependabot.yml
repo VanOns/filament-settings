@@ -32,3 +32,19 @@ updates:
       interval: weekly
     labels:
       - dependencies
+
+  - package-ecosystem: github-actions
+    target-branch: 'release/v2'
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies
+
+  - package-ecosystem: composer
+    target-branch: 'release/v2'
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies
