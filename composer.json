@@ -1,6 +1,11 @@
 {
     "name": "van-ons/filament-settings",
-    "description": "A package that provides an easy-to-use settings page for Filament.",
+    "description": "Add easy-to-use settings pages to your Filament admin panel.",
+    "keywords": [
+        "laravel",
+        "filament",
+        "settings"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [

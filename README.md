@@ -7,7 +7,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/VanOns/filament-settings?style=flat-square)](https://github.com/VanOns/filament-settings/issues)
 [![License](https://img.shields.io/github/license/VanOns/filament-settings?style=flat-square)](https://github.com/VanOns/filament-settings/blob/main/LICENSE.md)
 
-This plugin adds an easy-to-use settings page to your Filament admin panel.
+Add easy-to-use settings pages to your Filament admin panel.
 
 ## Quick start
 

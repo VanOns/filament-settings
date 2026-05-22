@@ -1,3 +1,3 @@
 # Introduction
 
-This plugin adds an easy-to-use settings page to your Filament admin panel.
+Add easy-to-use settings pages to your Filament admin panel.
