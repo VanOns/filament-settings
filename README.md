@@ -81,7 +81,7 @@ Please see [Security](SECURITY.md) for more information about how we deal with s
 We would like to thank the following contributors for their contributions to this project:
 
 - [Ryan Chandler](https://github.com/ryangjchandler) (original author)
-- [All Contributors](../../contributors)
+- [All contributors](../../contributors)
 
 ## License
 
