@@ -11,7 +11,7 @@ class FilamentSettings
         return Settings::query()
             ->where('name', $key)
             ->first()
-            ?->value ?? $default;
+            ->value ?? $default;
     }
 
     public function setValue(string $key, mixed $value): void
