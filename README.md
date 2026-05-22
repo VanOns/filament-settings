@@ -18,7 +18,7 @@ Add easy-to-use settings pages to your Filament admin panel.
 You can install the package via Composer:
 
 ```bash
-composer require van-ons/filament-settings:^2.0
+composer require van-ons/filament-settings:^3.0
 ```
 
 ### Create a settings page
