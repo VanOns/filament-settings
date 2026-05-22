@@ -11,63 +11,83 @@ This plugin adds an easy-to-use settings page to your Filament admin panel.
 
 ## Quick start
 
-### Compatibility
-
-For certain Filament versions, changes have to be made that render the package backwards incompatible with the previous version.
-Please see the table below to determine which version you need.
-
-| Version                                                           | Filament         |
-|-------------------------------------------------------------------|------------------|
-| v2 (current)                                                      | \>=4.0 \| \>=5.0 |
-| [v1](https://github.com/VanOns/filament-settings/tree/release/v1) | <4.0             |
-
-**Please note:** the `main` branch will always be the latest major version.
+> For Filament version compatibility, see [Compatibility](docs/compatibility.md).
 
 ### Installation
 
-Start by installing the package via Composer:
+You can install the package via Composer:
 
 ```bash
 composer require van-ons/filament-settings:^2.0
 ```
 
-### Usage
-
-You can create a new setting page by running the following command:
+### Create a settings page
 
 ```bash
 php artisan make:filament-settings-page GeneralSettings
 ```
 
-Executing this command will create two files:
+This creates `GeneralSettingsPage.php` (the form) and `GeneralSettings.php` (the defaults).
 
-- `app/Filament/Pages/GeneralSettingsPage.php`: The settings page class.
-- `app/Settings/GeneralSettings.php`: The settings class.
-
-To modify the form, go to `GeneralSettingsPage`.
-To modify the default values, go to `GeneralSettings`.
-
-### Reading and writing settings
-
-Use the `FilamentSettings` facade to get and set values anywhere in your application:
+### Read and write settings
 
 ```php
 use VanOns\FilamentSettings\Facade\FilamentSettings;
 
-// Get a setting value
-$value = FilamentSettings::getValue('general');
-$value = FilamentSettings::getValue('general', 'default');
-
-// Set a setting value
+FilamentSettings::getValue('general');
 FilamentSettings::setValue('general', ['site_name' => 'My App']);
 ```
 
-> **Note:** The key corresponds to the `$settingsName` property on your settings page class.
+See [Basic usage](docs/basic-usage.md) for more information.
 
-## Customizing the language files
+## Customization
+
+### Language files
 
 If you want to customize the language files, you can publish them by running the following command:
 
 ```bash
 php artisan vendor:publish --tag=filament-settings-lang
 ```
+
+## Documentation
+
+Please see the [documentation](docs) for detailed information about installation and usage.
+
+## Contributing
+
+Please see [Contributing](CONTRIBUTING.md) for more information about how you can contribute.
+
+## Testing
+
+```bash
+composer test
+```
+
+## Changelog
+
+Please see [Changelog](CHANGELOG.md) for more information about what has changed recently.
+
+## Upgrading
+
+Please see [Upgrading](UPGRADING.md) for more information about how to upgrade.
+
+## Security
+
+Please see [Security](SECURITY.md) for more information about how we deal with security.
+
+## Credits
+
+We would like to thank the following contributors for their contributions to this project:
+
+- [Ryan Chandler](https://github.com/ryangjchandler) (original author)
+- [All Contributors](../../contributors)
+
+## License
+
+The scripts and documentation in this project are released under the [MIT License](LICENSE.md).
+
+---
+
+<p align="center"><a href="https://van-ons.nl/" target="_blank"><img src="https://opensource.van-ons.nl/files/cow.png" width="50" alt="Logo of Van Ons"></a></p>
+
