@@ -180,7 +180,6 @@ fabric.properties
 .phpunit.cache
 build
 coverage
-phpunit.xml
 phpstan.neon
 testbench.yaml
 .php-cs-fixer.cache
