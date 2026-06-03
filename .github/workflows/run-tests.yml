@@ -6,7 +6,6 @@ on:
     types: [ opened, synchronize, reopened ]
     branches-ignore:
       - 'dependabot/github_actions/*'
-      - 'dependabot/npm_and_yarn/*'
 
 jobs:
   test:
@@ -66,7 +65,7 @@ jobs:
       - name: ⚙️Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: 8.2
           coverage: none
 
       - name: ⬇️Install Composer dependencies
