@@ -1,4 +1,4 @@
-# Basic usage
+# Usage
 
 You can create a new setting page by running the following command:
 
@@ -14,7 +14,7 @@ Executing this command will create two files:
 To modify the form, go to `GeneralSettingsPage`.
 To modify the default values, go to `GeneralSettings`.
 
-### Reading and writing settings
+## Reading and writing settings
 
 Use the `FilamentSettings` facade to get and set values anywhere in your application:
 
@@ -30,3 +30,13 @@ FilamentSettings::setValue('general', ['site_name' => 'My App']);
 ```
 
 > **Note:** The key corresponds to the `$settingsName` property on your settings page class.
+
+## Customization
+
+### Language files
+
+If you want to customize the language files, you can publish them by running the following command:
+
+```bash
+php artisan vendor:publish --tag=filament-settings-lang
+```

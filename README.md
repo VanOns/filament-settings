@@ -38,8 +38,6 @@ FilamentSettings::getValue('general');
 FilamentSettings::setValue('general', ['site_name' => 'My App']);
 ```
 
-See [Basic usage](docs/basic-usage.md) for more information.
-
 ## Customization
 
 ### Language files
