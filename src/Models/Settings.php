@@ -16,19 +16,4 @@ class Settings extends Model
     protected $casts = [
         'value' => 'json',
     ];
-
-    public static function set(string $key, mixed $value): void
-    {
-        self::query()->updateOrCreate(
-            ['name' => $key],
-            ['value' => $value]
-        );
-    }
-
-    public static function getValue(string $key): mixed
-    {
-        $record = self::query()->where('name', $key)->first();
-
-        return $record?->value;
-    }
 }

@@ -3,7 +3,7 @@
 namespace VanOns\FilamentSettings\Classes;
 
 use Illuminate\Support\Arr;
-use VanOns\FilamentSettings\Models\Settings as SettingsModel;
+use VanOns\FilamentSettings\Facade\FilamentSettings;
 
 abstract class Settings
 {
@@ -34,7 +34,7 @@ abstract class Settings
 
     protected function getSettings(): array
     {
-        return SettingsModel::getValue($this->getSettingsName()) ?? [];
+        return FilamentSettings::getValue($this->getSettingsName()) ?? [];
     }
 
     protected function filterSettings(array $settings): array
@@ -72,6 +72,6 @@ abstract class Settings
 
     public function save(mixed $value): void
     {
-        SettingsModel::set($this->getSettingsName(), $value);
+        FilamentSettings::setValue($this->getSettingsName(), $value);
     }
 }

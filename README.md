@@ -1,58 +1,91 @@
+<p align="center"><img src="art/social-card.png" alt="Social card of Filament Navigation"></p>
+
 # Filament Settings
 
-This package provides an easy-to-use settings page for Filament.
+[![Latest version on GitHub](https://img.shields.io/github/release/VanOns/filament-settings.svg?style=flat-square)](https://github.com/VanOns/filament-settings/releases)
+[![Total downloads](https://img.shields.io/packagist/dt/van-ons/filament-settings.svg?style=flat-square)](https://packagist.org/packages/van-ons/filament-settings)
+[![GitHub issues](https://img.shields.io/github/issues/VanOns/filament-settings?style=flat-square)](https://github.com/VanOns/filament-settings/issues)
+[![License](https://img.shields.io/github/license/VanOns/filament-settings?style=flat-square)](https://github.com/VanOns/filament-settings/blob/main/LICENSE.md)
+
+Add easy-to-use settings pages to your Filament admin panel.
 
 ## Quick start
 
-### Compatibility
-
-For certain Filament versions, changes have to be made that render the package backwards incompatible with the previous version.
-Please see the table below to determine which version you need.
-
-| Version                                                           | Filament          |
-|-------------------------------------------------------------------|-------------------|
-| v2 (current)                                                      | \>=4.0 \|  \>=5.0 |
-| [v1](https://github.com/VanOns/filament-settings/tree/release/v1) | <4.0              |
-
-**Please note:** the `main` branch will always be the latest major version.
+> For Filament version compatibility, see [Compatibility](docs/compatibility.md).
 
 ### Installation
 
-Because this package is not published to Packagist, you need to add it as a repository in your `composer.json` file:
-
-```json
-"repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/VanOns/filament-settings"
-    }
-]
-```
-
-Then, require the package:
+You can install the package via Composer:
 
 ```bash
-composer require van-ons/filament-settings:^2.0
+composer require van-ons/filament-settings:^3.0
 ```
 
-## Usage
-You can create a new setting page by running the following command:
+### Create a settings page
 
 ```bash
 php artisan make:filament-settings-page GeneralSettings
 ```
 
-Executing this command will create two files:
-- `app/Filament/Pages/GeneralSettingsPage.php`: The settings page class.
-- `app/Settings/GeneralSettings.php`: The settings class.
+This creates `GeneralSettingsPage.php` (the form) and `GeneralSettings.php` (the defaults).
 
-To modify the form, go to `GeneralSettingsPage`.
-To modify the default values, go to `GeneralSettings`.
+### Read and write settings
 
-## Customizing the language files
+```php
+use VanOns\FilamentSettings\Facade\FilamentSettings;
+
+FilamentSettings::getValue('general');
+FilamentSettings::setValue('general', ['site_name' => 'My App']);
+```
+
+## Customization
+
+### Language files
 
 If you want to customize the language files, you can publish them by running the following command:
 
 ```bash
 php artisan vendor:publish --tag=filament-settings-lang
 ```
+
+## Documentation
+
+Please see the [documentation](docs) for detailed information about installation and usage.
+
+## Contributing
+
+Please see [Contributing](CONTRIBUTING.md) for more information about how you can contribute.
+
+## Testing
+
+```bash
+composer test
+```
+
+## Changelog
+
+Please see [Changelog](CHANGELOG.md) for more information about what has changed recently.
+
+## Upgrading
+
+Please see [Upgrading](UPGRADING.md) for more information about how to upgrade.
+
+## Security
+
+Please see [Security](SECURITY.md) for more information about how we deal with security.
+
+## Credits
+
+We would like to thank the following contributors for their contributions to this project:
+
+- [Ryan Chandler](https://github.com/ryangjchandler) (original author)
+- [All contributors](../../contributors)
+
+## License
+
+The scripts and documentation in this project are released under the [MIT License](LICENSE.md).
+
+---
+
+<p align="center"><a href="https://van-ons.nl/" target="_blank"><img src="https://opensource.van-ons.nl/files/cow.png" width="50" alt="Logo of Van Ons"></a></p>
+
