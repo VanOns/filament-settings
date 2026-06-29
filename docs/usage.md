@@ -19,7 +19,7 @@ To modify the default values, go to `GeneralSettings`.
 Use the `FilamentSettings` facade to get and set values anywhere in your application:
 
 ```php
-use VanOns\FilamentSettings\Facade\FilamentSettings;
+use VanOns\FilamentSettings\Facades\FilamentSettings;
 
 // Get a setting value
 $value = FilamentSettings::getValue('general');

@@ -3,7 +3,7 @@
 namespace VanOns\FilamentSettings\Classes;
 
 use Illuminate\Support\Arr;
-use VanOns\FilamentSettings\Facade\FilamentSettings;
+use VanOns\FilamentSettings\Facades\FilamentSettings;
 
 abstract class Settings
 {

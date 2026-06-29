@@ -1,7 +1,7 @@
 <?php
 
 use Tests\Support\TestSettings;
-use VanOns\FilamentSettings\Facade\FilamentSettings;
+use VanOns\FilamentSettings\Facades\FilamentSettings;
 
 it('falls back to defaults() when the DB has no record', function () {
     $settings = new TestSettings();

@@ -32,7 +32,7 @@ This creates `GeneralSettingsPage.php` (the form) and `GeneralSettings.php` (the
 ### Read and write settings
 
 ```php
-use VanOns\FilamentSettings\Facade\FilamentSettings;
+use VanOns\FilamentSettings\Facades\FilamentSettings;
 
 FilamentSettings::getValue('general');
 FilamentSettings::setValue('general', ['site_name' => 'My App']);

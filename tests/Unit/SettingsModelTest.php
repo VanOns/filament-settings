@@ -1,6 +1,6 @@
 <?php
 
-use VanOns\FilamentSettings\Facade\FilamentSettings;
+use VanOns\FilamentSettings\Facades\FilamentSettings;
 use VanOns\FilamentSettings\Models\Settings;
 
 it('creates a new record and reads it back', function () {

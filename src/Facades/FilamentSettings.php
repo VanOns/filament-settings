@@ -1,6 +1,6 @@
 <?php
 
-namespace VanOns\FilamentSettings\Facade;
+namespace VanOns\FilamentSettings\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

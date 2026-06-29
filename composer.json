@@ -49,7 +49,7 @@
                 "VanOns\\FilamentSettings\\FilamentSettingsServiceProvider"
             ],
             "aliases": {
-                "FilamentSettings": "VanOns\\FilamentSettings\\Facade\\FilamentSettings"
+                "FilamentSettings": "VanOns\\FilamentSettings\\Facades\\FilamentSettings"
             }
         }
     },
