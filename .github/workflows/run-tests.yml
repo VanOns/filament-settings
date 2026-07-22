@@ -68,3 +68,9 @@ jobs:
 
       - name: ⬇️Install Composer dependencies
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress --no-ansi --no-interaction --optimize-autoloader
+
+      - name: 🕵️Run PHPStan
+        run: composer run analyse
+
+      - name: 🧑‍🔧Run PHP-CS-Fixer
+        run: composer run format:check
