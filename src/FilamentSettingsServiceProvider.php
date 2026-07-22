@@ -66,6 +66,6 @@ class FilamentSettingsServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        //
+        $this->app->singleton('filament-settings', fn () => new FilamentSettings());
     }
 }
