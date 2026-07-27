@@ -35,3 +35,18 @@ it('stores and retrieves a nested array through JSON cast', function () {
 
     expect(FilamentSettings::getValue('config'))->toBe($data);
 });
+
+it('creates a record directly through the model and reads name/value back', function () {
+    $settings = Settings::create(['name' => 'direct', 'value' => ['a' => 1]]);
+
+    expect($settings->fresh())
+        ->name->toBe('direct')
+        ->value->toBe(['a' => 1]);
+});
+
+it('ignores an id passed in the input array and lets the database assign it', function () {
+    $settings = Settings::create(['id' => 999, 'name' => 'ignored-id', 'value' => 'bar']);
+
+    expect($settings->id)->not->toBe(999);
+    expect(Settings::query()->where('name', 'ignored-id')->value('value'))->toBe('bar');
+});

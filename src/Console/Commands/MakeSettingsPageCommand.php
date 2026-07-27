@@ -30,7 +30,7 @@ class MakeSettingsPageCommand extends Command implements PromptsForMissingInput
     public function handle(): int
     {
         $name = Str::studly($this->argument('name'));
-        if (empty($name)) {
+        if (empty($name) || !preg_match('/^[A-Za-z0-9]+$/', $name)) {
             return self::INVALID;
         }
 
