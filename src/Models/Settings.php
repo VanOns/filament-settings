@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Settings extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = ['name', 'value'];
 
     protected $casts = [
         'value' => 'json',
