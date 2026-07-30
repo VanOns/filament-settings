@@ -43,9 +43,14 @@ trait HasSettings
         $this->settingsInstance->save($data);
     }
 
+    public function getSettingsVariant(): ?string
+    {
+        return null;
+    }
+
     public function getSettingsInstance(): Settings
     {
-        return new $this->settingsClass();
+        return new $this->settingsClass(variant: $this->getSettingsVariant());
     }
 
     public function submit(): void

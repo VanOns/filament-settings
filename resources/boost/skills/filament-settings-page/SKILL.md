@@ -136,6 +136,37 @@ Settings::set('general', ['site' => ['title' => 'New']]);  // overwrites the who
 
 `Settings::set($name, $value)` does `updateOrCreate` on `name`. Calling it overwrites the entire stored array — read first, merge, then write if you want partial updates.
 
+### 6. Store the group once per tenant / country / language (optional)
+
+When the same page has to be filled in separately per tenant, country, language or brand, override
+`getSettingsVariant()` on the page. Do **not** override `getSettingsInstance()` or build the key by hand.
+
+```php
+use Filament\Facades\Filament;
+
+class GeneralSettingsPage extends SettingsPage
+{
+    protected string $settingsClass = GeneralSettings::class;
+
+    public function getSettingsVariant(): ?string
+    {
+        return Filament::getTenant()?->code;
+    }
+}
+```
+
+The variant is appended to the settings name: `general` → `general.nl`, `general.de`. Returning `null` keeps
+the plain `general` key, so pages that don't need this are unaffected.
+
+Read a specific variant from application code:
+
+```php
+GeneralSettings::forVariant('nl')->get('site.title');
+```
+
+Each variant falls back to `defaults()` until saved for the first time, and variants never read each other's
+values. Compose more than one dimension by building the string yourself (`"{$country}.{$language}"`).
+
 ## Common follow-ups
 
 - **Multiple settings groups:** scaffold once per group (e.g. `make:filament-settings-page MailSettings`). Each group is one row in `settings`.
@@ -151,3 +182,4 @@ Settings::set('general', ['site' => ['title' => 'New']]);  // overwrites the who
 - Don't add fields to the form without also adding them to `defaults()` (or guarding reads) — old rows won't have the key.
 - Don't try to cast individual keys via Eloquent `$casts` on `Settings` — only the whole `value` is JSON. Use mutators or accessors in the data class instead.
 - Don't repurpose the empty `VanOns\FilamentSettings\FilamentSettings` class or its facade — they currently expose no public methods.
+- Don't hand-roll per-tenant keys by overriding `getSettingsInstance()` or passing a composed `$settingsName` — use `getSettingsVariant()` / `forVariant()`.
