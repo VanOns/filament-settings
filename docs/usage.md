@@ -54,18 +54,21 @@ class GeneralSettingsPage extends SettingsPage
 ```
 
 The variant is appended to the settings name, so `general` becomes `general.nl` and `general.de` — separate
-rows, edited through the same page. Returning `null` (the default) keeps the plain `general` key, so existing
-pages are unaffected.
+rows, edited through the same page. Returning `null` (the default) keeps the plain `general` key, so pages
+that don't use variants behave exactly as before.
 
-Read a specific variant from anywhere with `forVariant()`:
+Read a specific variant from anywhere with `withVariant()`:
 
 ```php
-GeneralSettings::forVariant('nl')->get('site.title');
-GeneralSettings::forVariant(null)->get('site.title'); // the unscoped row
+(new GeneralSettings())->withVariant('nl')->get('site.title');
+(new GeneralSettings())->get('site.title'); // the unscoped row
 ```
 
 Each variant falls back to `defaults()` until it is saved for the first time, and variants never read each
 other's values.
+
+> **Note:** `withVariant()` re-reads the settings, so building a variant instance costs one extra query. Call
+> it once and reuse the instance rather than chaining it per lookup.
 
 ## Customization
 

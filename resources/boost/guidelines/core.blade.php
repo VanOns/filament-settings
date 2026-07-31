@@ -28,7 +28,7 @@ Caveat: the generated `$settingsName` is the **first kebab segment** of the clas
 | Class / Trait | Purpose |
 |---|---|
 | `VanOns\FilamentSettings\Filament\Pages\SettingsPage` | Abstract Filament page. Override `getFormSchema(): array` and `protected string $settingsClass`. Override `getSettingsVariant(): ?string` to scope the page per tenant/country/language. |
-| `VanOns\FilamentSettings\Classes\Settings` | Abstract data class. Override `defaults(): array` and `public string $settingsName`. Static `forVariant(?string $variant): static` reads one variant. |
+| `VanOns\FilamentSettings\Classes\Settings` | Abstract data class. Override `defaults(): array` and `public string $settingsName`. `withVariant(?string $variant): static` re-targets the instance at one variant. |
 | `VanOns\FilamentSettings\Filament\Traits\CanMutateData` | Mounted on `SettingsPage` via `HasSettings`. Override `mutateFormDataBeforeFill()` / `mutateFormDataBeforeSave()` on the page. |
 | `VanOns\FilamentSettings\Filament\Actions\SaveAction` | Preconfigured save action (label, `mod+s` keybinding, calls `submit`). Returned by `getActions()`. |
 | `VanOns\FilamentSettings\Models\Settings` | Eloquent model. Static `Settings::set(string $key, mixed $value)` and `Settings::getValue(string $key): mixed` for direct access. |
@@ -36,7 +36,7 @@ Caveat: the generated `$settingsName` is the **first kebab segment** of the clas
 ### Conventions
 
 - A "settings group" = one row in `settings`, keyed by `$settingsName`. Pair one `SettingsPage` subclass with one `Settings` subclass.
-- To store the same group once per tenant/country/language, override `getSettingsVariant()` on the page instead of overriding `getSettingsInstance()` or hand-building the key. The variant is appended to the name (`general` → `general.nl`); `null` keeps the plain key. Read one with `GeneralSettings::forVariant('nl')`.
+- To store the same group once per tenant/country/language, override `getSettingsVariant()` on the page instead of overriding `getSettingsInstance()` or hand-building the key. The variant is appended to the name (`general` → `general.nl`); `null` keeps the plain key. Read one with `(new GeneralSettings())->withVariant('nl')`.
 - Read settings outside Filament with `(new GeneralSettings())->get('site.title')` or `Settings::getValue('general')`. `get()` accepts dot notation (uses `Arr::get`).
 - `defaults()` is only used when **no row exists yet** for the group. Once saved, defaults are not merged in. Plan for missing keys when adding new fields later.
 - The page form is preconfigured with `->statePath('settings')->columns(3)`. Override `form()` on the page to change column count or state path.

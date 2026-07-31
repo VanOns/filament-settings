@@ -50,7 +50,8 @@ trait HasSettings
 
     public function getSettingsInstance(): Settings
     {
-        return new $this->settingsClass(variant: $this->getSettingsVariant());
+        return (new $this->settingsClass())
+            ->withVariant($this->getSettingsVariant());
     }
 
     public function submit(): void

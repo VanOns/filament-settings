@@ -161,11 +161,13 @@ the plain `general` key, so pages that don't need this are unaffected.
 Read a specific variant from application code:
 
 ```php
-GeneralSettings::forVariant('nl')->get('site.title');
+(new GeneralSettings())->withVariant('nl')->get('site.title');
 ```
 
 Each variant falls back to `defaults()` until saved for the first time, and variants never read each other's
 values. Compose more than one dimension by building the string yourself (`"{$country}.{$language}"`).
+
+`withVariant()` re-reads from the database, so hold the instance instead of calling it per lookup.
 
 ## Common follow-ups
 

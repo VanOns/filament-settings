@@ -5,9 +5,6 @@ namespace VanOns\FilamentSettings\Classes;
 use Illuminate\Support\Arr;
 use VanOns\FilamentSettings\Facades\FilamentSettings;
 
-/**
- * @phpstan-consistent-constructor
- */
 abstract class Settings
 {
     public array $settings = [];
@@ -15,30 +12,49 @@ abstract class Settings
     protected ?string $variant = null;
 
     public function __construct(
-        ?string $settingsName = null,
-        ?string $variant = null
+        ?string $settingsName = null
     ) {
         if (!is_null($settingsName)) {
             $this->settingsName = $settingsName;
         }
 
-        if (!is_null($variant)) {
-            $this->variant = $variant;
-        }
-
-        $this->settings = empty($this->getSettings())
-            ? $this->defaults()
-            : $this->getSettings();
-    }
-
-    public static function forVariant(?string $variant): static
-    {
-        return new static(variant: $variant);
+        $this->loadSettings();
     }
 
     public function defaults(): array
     {
         return [];
+    }
+
+    public function withVariant(?string $variant): static
+    {
+        if ($variant === $this->variant) {
+            return $this;
+        }
+
+        return $this
+            ->setVariant($variant)
+            ->loadSettings();
+    }
+
+    protected function setVariant(?string $variant): static
+    {
+        $this->variant = empty($variant)
+            ? null
+            : $variant;
+
+        return $this;
+    }
+
+    protected function loadSettings(): static
+    {
+        $settings = $this->getSettings();
+
+        $this->settings = empty($settings)
+            ? $this->defaults()
+            : $settings;
+
+        return $this;
     }
 
     public function getVariant(): ?string
@@ -48,7 +64,7 @@ abstract class Settings
 
     public function getSettingsName(): string
     {
-        if (is_null($this->variant) || $this->variant === '') {
+        if (is_null($this->variant)) {
             return $this->settingsName;
         }
 
