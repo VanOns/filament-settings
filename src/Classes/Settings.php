@@ -9,6 +9,7 @@ abstract class Settings
 {
     public array $settings = [];
     public string $settingsName = 'general';
+    protected ?string $variant = null;
 
     public function __construct(
         ?string $settingsName = null
@@ -17,9 +18,7 @@ abstract class Settings
             $this->settingsName = $settingsName;
         }
 
-        $this->settings = empty($this->getSettings())
-            ? $this->defaults()
-            : $this->getSettings();
+        $this->loadSettings();
     }
 
     public function defaults(): array
@@ -27,9 +26,49 @@ abstract class Settings
         return [];
     }
 
+    public function withVariant(?string $variant): static
+    {
+        if ($variant === $this->variant) {
+            return $this;
+        }
+
+        return $this
+            ->setVariant($variant)
+            ->loadSettings();
+    }
+
+    protected function setVariant(?string $variant): static
+    {
+        $this->variant = empty($variant)
+            ? null
+            : $variant;
+
+        return $this;
+    }
+
+    protected function loadSettings(): static
+    {
+        $settings = $this->getSettings();
+
+        $this->settings = empty($settings)
+            ? $this->defaults()
+            : $settings;
+
+        return $this;
+    }
+
+    public function getVariant(): ?string
+    {
+        return $this->variant;
+    }
+
     public function getSettingsName(): string
     {
-        return $this->settingsName;
+        if (is_null($this->variant)) {
+            return $this->settingsName;
+        }
+
+        return $this->settingsName . '.' . $this->variant;
     }
 
     protected function getSettings(): array
