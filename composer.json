@@ -25,7 +25,7 @@
         "orchestra/testbench": "^9.0|^10.0",
         "pestphp/pest": "^3.0|^4.0",
         "pestphp/pest-plugin-laravel": "^3.0|^4.0",
-        "phpstan/phpstan": "^2.1"
+        "phpstan/phpstan": "^2.2"
     },
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse --memory-limit=1G",
