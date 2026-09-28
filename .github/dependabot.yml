@@ -24,6 +24,7 @@ updates:
   - package-ecosystem: composer
     target-branch: 'release/v1'
     directory: /
+    versioning-strategy: increase
     schedule:
       interval: weekly
     cooldown:
@@ -37,6 +38,7 @@ updates:
   - package-ecosystem: composer
     target-branch: 'release/v2'
     directory: /
+    versioning-strategy: increase
     schedule:
       interval: weekly
     cooldown:
