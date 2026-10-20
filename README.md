@@ -1,4 +1,4 @@
-<p align="center" class="filament-hidden"><img src="art/social-card.png" alt="Social card of Filament Settings"></p>
+<p align="center" class="filament-hidden"><img src="https://raw.githubusercontent.com/VanOns/filament-settings/main/art/social-card.png" alt="Social card of Filament Settings"></p>
 
 # Filament Settings
 
@@ -12,7 +12,7 @@ Add easy-to-use settings pages to your Filament admin panel.
 
 ## Quick start
 
-> For Filament version compatibility, see [Compatibility](docs/compatibility.md).
+> For Filament version compatibility, see [Compatibility](https://github.com/VanOns/filament-settings/blob/main/docs/compatibility.md).
 
 ### Installation
 
@@ -51,11 +51,11 @@ php artisan vendor:publish --tag=filament-settings-lang
 
 ## Documentation
 
-Please see the [documentation](docs) for detailed information about installation and usage.
+Please see the [documentation](https://github.com/VanOns/filament-settings/tree/main/docs) for detailed information about installation and usage.
 
 ## Contributing
 
-Please see [Contributing](CONTRIBUTING.md) for more information about how you can contribute.
+Please see [Contributing](https://github.com/VanOns/filament-settings/blob/main/CONTRIBUTING.md) for more information about how you can contribute.
 
 ## Testing
 
@@ -65,25 +65,25 @@ composer test
 
 ## Changelog
 
-Please see [Changelog](CHANGELOG.md) for more information about what has changed recently.
+Please see [Changelog](https://github.com/VanOns/filament-settings/blob/main/CHANGELOG.md) for more information about what has changed recently.
 
 ## Upgrading
 
-Please see [Upgrading](UPGRADING.md) for more information about how to upgrade.
+Please see [Upgrading](https://github.com/VanOns/filament-settings/blob/main/UPGRADING.md) for more information about how to upgrade.
 
 ## Security
 
-Please see [Security](SECURITY.md) for more information about how we deal with security.
+Please see [Security](https://github.com/VanOns/filament-settings/blob/main/SECURITY.md) for more information about how we deal with security.
 
 ## Credits
 
 We would like to thank the following contributors for their contributions to this project:
 
-- [All contributors](../../contributors)
+- [All contributors](https://github.com/VanOns/filament-settings/graphs/contributors)
 
 ## License
 
-The scripts and documentation in this project are released under the [MIT License](LICENSE.md).
+The scripts and documentation in this project are released under the [MIT License](https://github.com/VanOns/filament-settings/blob/main/LICENSE.md).
 
 ---
 
