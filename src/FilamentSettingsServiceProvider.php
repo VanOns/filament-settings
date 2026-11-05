@@ -40,6 +40,13 @@ class FilamentSettingsServiceProvider extends PackageServiceProvider
             namespace: 'filament-settings'
         );
 
+        // Named like the folder it is published to, so the app's copy overrides the package's.
+        $this->loadTranslationsFrom(
+            path: __DIR__.'/../lang',
+            namespace: 'filament-settings'
+        );
+
+        // The namespace before v3.3, for apps that use it themselves; remove in v4.
         $this->loadTranslationsFrom(
             path: __DIR__.'/../lang',
             namespace: 'filament-settings-lang'

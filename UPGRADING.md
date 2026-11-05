@@ -10,6 +10,10 @@ adding it yourself and creating a pull request.
 Publishing the migrations again now only adds the ones the app does not have yet. Before, it published every
 migration again under a new date.
 
+Published translations (`--tag=filament-settings-lang`) now take effect. Before, the package looked for them in
+`lang/vendor/filament-settings-lang` while they were published to `lang/vendor/filament-settings`. Their keys are now
+under `filament-settings::`; `filament-settings-lang::` keeps working until v4.
+
 <!-- EXAMPLE -->
 <!--
 ## v1 to v2
