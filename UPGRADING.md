@@ -5,6 +5,11 @@ This document will outline those steps. And as much as we try to cover all cases
 across such a case, please let us know by [opening an issue](https://github.com/VanOns/filament-settings/issues), or by
 adding it yourself and creating a pull request.
 
+## v3.3.0
+
+Publishing the migrations again now only adds the ones the app does not have yet. Before, it published every
+migration again under a new date.
+
 <!-- EXAMPLE -->
 <!--
 ## v1 to v2
