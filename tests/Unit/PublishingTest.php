@@ -58,7 +58,7 @@ it('names the migrations an app has neither published nor run after migrate', fu
     DB::table('migrations')->delete();
 
     expect(outputAfter('migrate'))
-        ->toContain('filament-settings has 1 migration that is not published')
+        ->toContain('Migrations of filament-settings that are not published: ')
         ->toContain('create_settings_table')
         ->toContain('php artisan vendor:publish --tag=filament-settings-migrations')
         ->and(outputAfter('migrate:status'))->toBe('');
