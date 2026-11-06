@@ -5,8 +5,8 @@ Provides an abstract Filament `Page` plus a backing data class for building admi
 ### Setup
 
 - Service provider auto-discovered: `VanOns\FilamentSettings\FilamentSettingsServiceProvider`.
-- Run the migration after install: `php artisan migrate` (creates `settings` table with `name` (unique) and `value` (json)).
-- Optional publishes: `filament-settings-migrations`, `filament-settings-lang`, `filament-settings-views`, `filament-settings-config` (config file currently has no keys).
+- Publish and run the migration after install: `php artisan vendor:publish --tag=filament-settings-migrations`, then `php artisan migrate` (creates `settings` table with `name` (unique) and `value` (json)). The package does not load it itself; `migrate` warns while it is not published.
+- Optional publishes: `filament-settings-lang`, `filament-settings-views`, `filament-settings-config` (config file currently has no keys).
 
 ### Scaffolding a settings page
 

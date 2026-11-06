@@ -2,9 +2,11 @@
 
 namespace VanOns\FilamentSettings;
 
+use Illuminate\Console\Events\CommandFinished;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use VanOns\FilamentSettings\Console\Commands\MakeSettingsPageCommand;
+use VanOns\FilamentSettings\Listeners\WarnAboutUnpublishedMigrations;
 
 class FilamentSettingsServiceProvider extends PackageServiceProvider
 {
@@ -74,6 +76,11 @@ class FilamentSettingsServiceProvider extends PackageServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 MakeSettingsPageCommand::class,
+            ]);
+
+            $this->app['events']->listen(CommandFinished::class, [
+                new WarnAboutUnpublishedMigrations(static::class, $this->package->name, $this->package->shortName().'-migrations'),
+                'handle',
             ]);
         }
     }
