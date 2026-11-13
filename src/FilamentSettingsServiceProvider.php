@@ -2,20 +2,27 @@
 
 namespace VanOns\FilamentSettings;
 
-use Illuminate\Support\ServiceProvider;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 use VanOns\FilamentSettings\Console\Commands\MakeSettingsPageCommand;
 
-class FilamentSettingsServiceProvider extends ServiceProvider
+class FilamentSettingsServiceProvider extends PackageServiceProvider
 {
-    public function boot(): void
+    public function configurePackage(Package $package): void
     {
-        $this->publishesMigrations(
-            paths: [
-                __DIR__ . '/../database/migrations' => database_path('migrations'),
-            ],
-            groups: 'filament-settings-migrations'
-        );
+        // Recognises migrations an app already published, whatever their date, so publishing again only adds new ones.
+        $package
+            ->name('filament-settings')
+            ->discoversMigrations();
+    }
 
+    public function packageRegistered(): void
+    {
+        $this->app->singleton('filament-settings', fn () => new FilamentSettings());
+    }
+
+    public function packageBooted(): void
+    {
         $this->mergeConfigFrom(
             path: __DIR__ . '/../config/filament-settings.php',
             key: 'filament-settings'
@@ -33,6 +40,13 @@ class FilamentSettingsServiceProvider extends ServiceProvider
             namespace: 'filament-settings'
         );
 
+        // Named like the folder it is published to, so the app's copy overrides the package's.
+        $this->loadTranslationsFrom(
+            path: __DIR__.'/../lang',
+            namespace: 'filament-settings'
+        );
+
+        // The namespace before v3.3, for apps that use it themselves; remove in v4.
         $this->loadTranslationsFrom(
             path: __DIR__.'/../lang',
             namespace: 'filament-settings-lang'
@@ -62,10 +76,5 @@ class FilamentSettingsServiceProvider extends ServiceProvider
                 MakeSettingsPageCommand::class,
             ]);
         }
-    }
-
-    public function register(): void
-    {
-        $this->app->singleton('filament-settings', fn () => new FilamentSettings());
     }
 }

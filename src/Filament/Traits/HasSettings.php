@@ -68,7 +68,7 @@ trait HasSettings
         } catch (Exception) {
             Notification::make()
                 ->danger()
-                ->title(__('filament-settings-lang::panel.error_message'))
+                ->title(__('filament-settings::panel.error_message'))
                 ->send();
             return;
         }
