@@ -58,6 +58,14 @@
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        },
+        "policy": {
+            "cooldown": {
+                "period": "3 days",
+                "ignore": {
+                    "van-ons/*": "Our own packages, installed from VCS"
+                }
+            }
         }
     }
 }
